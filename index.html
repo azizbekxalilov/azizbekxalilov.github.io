@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechPoint Login</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      font-family: monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00ff00;
+    }
+
+    .login-box {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 320px;
+      box-shadow: 0 0 10px #00ff00;
+    }
+
+    .login-box h2 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .login-box p {
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #00ff00;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #111;
+      border: 1px solid #00ff00;
+      color: #00ff00;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      background-color: #00ff00;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-box .forgot {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #00ff00;
+      cursor: pointer;
+    }
+
+    .login-box .forgot:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-box">
+    <h2>Azizbek Xalilov</h2>
+    <p>Kirish sahifasi</p>
+
+    <input id="phoneInput" type="text" placeholder="940940339" />
+    <input id="passwordInput" type="password" placeholder="Parolni kiriting" />
+
+    <button id="loginButton" onclick="checkLogin()">Kirish</button>
+
+    <p id="errorMsg" class="forgot" style="display: none;">
+      ❌ Noto‘g‘ri login yoki parol. 10 soniyadan keyin qayta urinib ko‘ring.
+    </p>
+
+    <p class="forgot">Login yoki parolni unutdingizmi?</p>
+  </div>
+
+  <script>
+    function checkLogin() {
+      const phone = document.getElementById("phoneInput").value.trim();
+      const password = document.getElementById("passwordInput").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+      const loginButton = document.getElementById("loginButton");
+
+      const correctPhone = "940940339";
+      const correctPassword = "1A8LF52G";
+
+      if (phone === correctPhone && password === correctPassword) {
+        window.location.href = "dashboard.html";
+      } else {
+        errorMsg.style.display = "block";
+        loginButton.disabled = true;
+        loginButton.innerText = "Kutib turing...";
+
+        setTimeout(() => {
+          errorMsg.style.display = "none";
+          document.getElementById("phoneInput").value = "";
+          document.getElementById("passwordInput").value = "";
+          loginButton.disabled = false;
+          loginButton.innerText = "Kirish";
+        }, 10000);
+      }
+    }
+  </script>
+</body>
+</html>
